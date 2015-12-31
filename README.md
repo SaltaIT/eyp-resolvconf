@@ -79,7 +79,7 @@ To setup resolv with a given list of resolver, alternating queries:
 
 ## Reference
 Facter:
-* eyp_resolvconf_maxns, value of MAXNS in /usr/include/resolv.h (If /usr/include/resolv.h isn't installed before the first execution this will fail, however the first execution will install it and the next will go OK.)
+* eyp_resolvconf_maxns, to get MAXNS value we need /usr/include/resolv.h to be present. If /usr/include/resolv.h isn't installed before the first execution it will be ignored, however in the first execution it will be installed
 
 ## Limitations
 * Redhat and derivatives: 6 and 7 releases.
