@@ -3,7 +3,7 @@ class resolvconf::params {
   case $::osfamily
   {
     'redhat':
-        {
+    {
       case $::operatingsystemrelease
       {
         /^[6-7].*$/:

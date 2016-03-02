@@ -27,7 +27,7 @@ class resolvconf (
   if ( ($::eyp_resolvconf_maxns) and ($resolverlistsize > $::eyp_resolvconf_maxns) )
   {
     notify { 'resolvconf limits':
-      message => "more resolvers configured (${resolverlistsize}) that system's limit (${local_maxns})"
+      message => "more resolvers configured (${resolverlistsize}) that system's limit (${::eyp_resolvconf_maxns})"
     }
   }
 
@@ -53,7 +53,7 @@ class resolvconf (
     refreshonly => true,
   }
 
-  if($ignoreifconf and $resolvconfd)
+  if($ignoreifconf and $resolvconf::params::resolvconfd)
   {
     file { '/etc/resolvconf/interface-order':
       ensure  => 'present',
