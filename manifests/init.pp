@@ -7,7 +7,7 @@ class resolvconf (
                     $attempts=1,
                     $ignoreifconf=true,
                     $disableimmutable=false,
-                ) inherits params {
+                ) inherits resolvconf::params {
 
   validate_array($resolvers)
   validate_bool($rotate)
