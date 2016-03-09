@@ -18,7 +18,7 @@ class resolvconf (
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
   }
 
-  # packed needed in order to get MAXNS from resolv.h file in facter fact
+  # needed for eyp_resolvconf_maxns to get MAXNS
   package {  'glibc-headers':
     ensure => present,
     name   => $resolvconf::params::glibcheaders,
