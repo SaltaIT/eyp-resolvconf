@@ -14,20 +14,20 @@
 
 ## Overview
 
-This module setups /etc/resolv.conf
+This module setups **resolv.conf**
 
 ## Module Description
 
-Configures /etc/resolv.conf (/etc/resolvconf/resolv.conf.d/base for Ubuntu)
+Configures **/etc/resolv.conf** (**resolv.conf.d** on Ubuntu)
 
 ## Setup
 
-Required Modules:
+Optional Modules to disable immutable bit on **resolv.conf**:
 * eyp/chattr
 
 ### What resolvconf affects
 
-* Just modifies /etc/resolv.conf
+* Modifies /etc/resolv.conf
 * This can module can break name resolution, consider yourself warned if something goes wrong
 
 ### Beginning with resolvconf
@@ -68,20 +68,19 @@ To setup resolv with a given list of resolver, alternating queries:
 ## Usage
 
 ### resolvconf
-* resolvers: array that defines the entries to add.
-* domain: string that defines the domain of the entries.
-* searchlist: array than defines the names that resolve the entry.
-* rotate: if true sets the option rotate.
-* timeout: sets the time before a timeout.
-* attempts: sets the numbers of attempts.
-* ignoreifconf: if set to true ignores dhcp pushed configuration. Only works in systems with resolv.conf.d.
-* disableimmutable: disable the immutable bit to resolv.conf.
+* **resolvers**: array that defines the entries to add.
+* **domain**: string that defines the domain of the entries.
+* **searchlist**: array than defines the names that resolve the entry.
+* **rotate**: if true sets the option rotate.
+* **timeout**: sets the time before a timeout.
+* **attempts**: sets the numbers of attempts.
+* **ignoreifconf**: if set to true ignores dhcp pushed configuration. Only works in systems with resolv.conf.d.
+* **disableimmutable**: disable the immutable bit to **/etc/resolv.conf**. eyp-chattr required if set to true (not an actual dependency)
 
 ## Reference
 Facter:
-* eyp_resolvconf_maxns, to get MAXNS value we need /usr/include/resolv.h to be present. If /usr/include/resolv.h isn't installed before the first execution it will be ignored, however in the first execution it will be installed
+* **eyp_resolvconf_maxns**, to get MAXNS value we need /usr/include/resolv.h to be present. If /usr/include/resolv.h isn't installed before the first execution it will be ignored, however during the first execution it will be installed so for later executions to be present
 
 ## Limitations
-* Redhat and derivatives: 6 and 7 releases.
-* Ubuntu: 14.
-* Others: unsuported.
+* Redhat and derivatives: 5, 6 and 7 releases.
+* Ubuntu: 14.04
