@@ -1,12 +1,12 @@
 class resolvconf (
-                    $resolvers = [ '8.8.8.8', '8.8.4.4' ],
-                    $domain=undef,
-                    $searchlist=undef ,
-                    $rotate=true,
-                    $timeout=1,
-                    $attempts=1,
-                    $ignoreifconf=true,
-                    $disableimmutable=false,
+                    $resolvers        = [ '8.8.8.8', '8.8.4.4' ],
+                    $domain           = undef,
+                    $searchlist       = undef ,
+                    $rotate           = true,
+                    $timeout          = '1',
+                    $attempts         = '1',
+                    $ignoreifconf     = true,
+                    $disableimmutable = false,
                 ) inherits resolvconf::params {
 
   validate_array($resolvers)

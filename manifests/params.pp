@@ -6,7 +6,7 @@ class resolvconf::params {
     {
       case $::operatingsystemrelease
       {
-        /^[6-7].*$/:
+        /^[5-7].*$/:
         {
           $resolvfile='/etc/resolv.conf'
           $notifyresolv=undef
