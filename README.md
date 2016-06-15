@@ -83,8 +83,12 @@ Facter:
 * **eyp_resolvconf_maxns**, to get MAXNS value we need /usr/include/resolv.h to be present. If /usr/include/resolv.h isn't installed before the first execution it will be ignored, however during the first execution it will be installed so for later executions to be present
 
 ## Limitations
+
+Tested on:
+
 * Redhat and derivatives: 5, 6 and 7 releases.
 * Ubuntu: 14.04
+* SLES 11 SP3
 
 ## Development
 
