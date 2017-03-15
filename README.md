@@ -88,6 +88,7 @@ Tested on:
 
 * Redhat and derivatives: 5, 6 and 7 releases.
 * Ubuntu: 14.04
+* Ubuntu: 16.04
 * SLES 11 SP3
 
 ## Development
