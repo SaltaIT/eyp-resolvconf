@@ -25,7 +25,7 @@ class resolvconf::params {
         {
           case $::operatingsystemrelease
           {
-            /^14.*$/:
+            /^1[46].*$/:
             {
               $resolvfile='/etc/resolvconf/resolv.conf.d/base'
               $notifyresolv=Exec['update resolvconf']
