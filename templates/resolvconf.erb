@@ -7,7 +7,7 @@
 nameserver <%= val %>
 <% end -%>
 <% if defined?(@domain) -%>
-  <%- if @domain == "" -%>
+  <%- if @domain != "" -%>
 domain <%= @domain %>
   <%- end -%>
 <% end -%>
