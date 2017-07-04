@@ -1,7 +1,7 @@
 class resolvconf (
                     $resolvers        = [ '8.8.8.8', '8.8.4.4' ],
                     $domain           = undef,
-                    $searchlist       = undef ,
+                    $searchlist       = undef,
                     $rotate           = true,
                     $timeout          = '1',
                     $attempts         = '1',
