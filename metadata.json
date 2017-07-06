@@ -4,11 +4,11 @@
   "author": "eyp",
   "summary": "manages /etc/resolv.conf file",
   "license": "Apache-2.0",
-  "source": "",
-  "project_page": "http://systemadmin.es",
-  "issues_url": null,
+  "source": "https://github.com/NTTCom-MS/eyp-resolvconf",
+  "project_page": "https://github.com/NTTCom-MS/eyp-resolvconf",
+  "issues_url": "https://github.com/NTTCom-MS/eyp-resolvconf/issuesq",
   "dependencies": [
-    {"version_requirement":">= 1.0.0","name":"puppetlabs/stdlib"}
+    {"version_requirement":">= 1.0.0 < 9.9.9","name":"puppetlabs/stdlib"}
   ],
   "operatingsystem_support": [
     {
