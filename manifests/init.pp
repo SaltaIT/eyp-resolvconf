@@ -18,57 +18,70 @@ class resolvconf (
     path => '/usr/sbin:/usr/bin:/sbin:/bin',
   }
 
-  # needed for eyp_resolvconf_maxns to get MAXNS
-  package {  'glibc-headers':
-    ensure => present,
-    name   => $resolvconf::params::glibcheaders,
-  }
-
-  if ( ($::eyp_resolvconf_maxns) and ($resolverlistsize > $::eyp_resolvconf_maxns) )
+  if($resolvconf::params::use_netplan)
   {
-    notify { 'resolvconf limits':
-      message => "more resolvers configured (${resolverlistsize}) that system's limit (${::eyp_resolvconf_maxns})"
+    #
+    netplan::interface { 'default DNS all interfaces':
+      dev        => 'resolvers_all_interfaces',
+      match      => true,
+      match_name => '*',
+      dns        => [ '1.1.1.1', '8.8.8.8' ],
+      search     => $searchlist,
     }
   }
-
-  if ($disableimmutable)
+  else
   {
-    e2fs_immutable { $resolvconf::params::resolvfile:
-      ensure => 'absent',
-      before => File[$resolvconf::params::resolvfile],
+    # needed for eyp_resolvconf_maxns to get MAXNS
+    package {  'glibc-headers':
+      ensure => present,
+      name   => $resolvconf::params::glibcheaders,
     }
-  }
 
-  file { $resolvconf::params::resolvfile:
-    ensure  => present,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template("${module_name}/resolvconf.erb"),
-    notify  => $resolvconf::params::notifyresolv,
-  }
+    if ( ($::eyp_resolvconf_maxns) and ($resolverlistsize > $::eyp_resolvconf_maxns) )
+    {
+      notify { 'resolvconf limits':
+        message => "more resolvers configured (${resolverlistsize}) that system's limit (${::eyp_resolvconf_maxns})"
+      }
+    }
 
-  exec { 'update resolvconf':
-    command     => 'resolvconf -u',
-    refreshonly => true,
-  }
+    if ($disableimmutable)
+    {
+      e2fs_immutable { $resolvconf::params::resolvfile:
+        ensure => 'absent',
+        before => File[$resolvconf::params::resolvfile],
+      }
+    }
 
-  if($ignoreifconf and $resolvconf::params::resolvconfd)
-  {
-    file { '/etc/resolvconf/interface-order':
-      ensure  => 'present',
+    file { $resolvconf::params::resolvfile:
+      ensure  => present,
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
-      content => "lo\n",
-      notify  => Exec['update resolvconf interface-order'],
+      content => template("${module_name}/resolvconf.erb"),
+      notify  => $resolvconf::params::notifyresolv,
     }
 
-    exec { 'update resolvconf interface-order':
+    exec { 'update resolvconf':
       command     => 'resolvconf -u',
       refreshonly => true,
     }
 
+    if($ignoreifconf and $resolvconf::params::resolvconfd)
+    {
+      file { '/etc/resolvconf/interface-order':
+        ensure  => 'present',
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0644',
+        content => "lo\n",
+        notify  => Exec['update resolvconf interface-order'],
+      }
+
+      exec { 'update resolvconf interface-order':
+        command     => 'resolvconf -u',
+        refreshonly => true,
+      }
+    }
   }
 
 }

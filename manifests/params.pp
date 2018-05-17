@@ -12,6 +12,7 @@ class resolvconf::params {
           $notifyresolv=undef
           $resolvconfd=false
           $glibcheaders='glibc-headers'
+          $use_netplan=false
         }
         default: { fail("Unsupported RHEL/CentOS version! - ${::operatingsystemrelease}")  }
       }
@@ -23,14 +24,19 @@ class resolvconf::params {
       {
         'Ubuntu':
         {
+          $resolvfile='/etc/resolvconf/resolv.conf.d/base'
+          $notifyresolv=Exec['update resolvconf']
+          $resolvconfd=true
+          $glibcheaders='libc6-dev'
           case $::operatingsystemrelease
           {
             /^1[46].*$/:
             {
-              $resolvfile='/etc/resolvconf/resolv.conf.d/base'
-              $notifyresolv=Exec['update resolvconf']
-              $resolvconfd=true
-              $glibcheaders='libc6-dev'
+              $use_netplan=false
+            }
+            /^18.*$/:
+            {
+              $use_netplan=true
             }
             default: { fail("Unsupported Ubuntu version! - ${::operatingsystemrelease}")  }
           }

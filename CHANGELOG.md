@@ -1,8 +1,12 @@
 # CHANGELOG
 
+## 0.1.22
+
+* Ubuntu 18.04 support
+
 ## 0.1.21
 
-* dont add domain when is set to an empty string
+* don't add domain when is set to an empty string
 
 ## 0.1.20
 
