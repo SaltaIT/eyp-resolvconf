@@ -53,7 +53,7 @@ class resolvconf::params {
         {
           case $::operatingsystemrelease
           {
-            '11.3':
+            /^1[12].3$/:
             {
               $resolvfile='/etc/resolv.conf'
               $notifyresolv=undef
