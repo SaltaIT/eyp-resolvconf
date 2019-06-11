@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.24
+
+* rework **eyp_resolvconf_maxns** fact
+
 ## 0.1.23
 
 * SLES 12.3 support

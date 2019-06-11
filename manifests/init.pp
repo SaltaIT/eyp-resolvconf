@@ -37,7 +37,7 @@ class resolvconf (
       name   => $resolvconf::params::glibcheaders,
     }
 
-    if ( ($::eyp_resolvconf_maxns) and ($resolverlistsize > $::eyp_resolvconf_maxns) )
+    if ( ($::eyp_resolvconf_maxns != undef) and ($resolverlistsize > $::eyp_resolvconf_maxns) )
     {
       notify { 'resolvconf limits':
         message => "more resolvers configured (${resolverlistsize}) that system's limit (${::eyp_resolvconf_maxns})"
