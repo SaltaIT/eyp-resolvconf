@@ -39,7 +39,7 @@ class resolvconf (
     if ( ($fact_eyp_resolvconf_maxns != undef) and ($resolverlistsize > $fact_eyp_resolvconf_maxns) )
     {
       notify { 'resolvconf limits':
-        message => "more resolvers configured (${resolverlistsize}) that system's limit (${::eyp_resolvconf_maxns})"
+        message => "more resolvers configured (${resolverlistsize}) that system's limit (${fact_eyp_resolvconf_maxns})"
       }
     }
 
