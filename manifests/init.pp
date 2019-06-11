@@ -9,9 +9,6 @@ class resolvconf (
                     $disableimmutable = false,
                 ) inherits resolvconf::params {
 
-  validate_array($resolvers)
-  validate_bool($rotate)
-
   $resolverlistsize=size($resolvers)
 
   Exec {
