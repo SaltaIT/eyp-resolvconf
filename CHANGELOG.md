@@ -3,6 +3,7 @@
 ## 0.1.24
 
 * rework **eyp_resolvconf_maxns** fact
+* added RHEL 8 support
 
 ## 0.1.23
 
